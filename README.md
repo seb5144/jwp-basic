@@ -12,5 +12,5 @@
 * jspView는 home.jsp view와 model을 맵핑하여 html을 응답한다.
 
 #### 7. next.web.qna package의 ShowController는 멀티 쓰레드 상황에서 문제가 발생하는 이유에 대해 설명하라.
-* ShowController의 execute method 안에서 Dao를 접근하게 되면 멀티 쓰레드에서 동시에 호출 하게 되었을 때 문제가 된다.
-* 한 쓰레드에서 데이터를 write하면 다른 쓰레드에서는 같은 데이터를 바라보는데 write가 적용된 데이터를 바라보지 못한 상태로 접근하게 되어 일관성이 깨진다.
+* ShowController의 execute method 밖에서 data에 접근하게 되면 single instance인 controller에 접근한 data가 멀티 쓰레드에서 같은 곳을 바라보게 된다.
+* 멀티 쓰레드가 동시에 한 data를 바라보게 되면 기존 쓰레드가 접근 했던 data가 다음에 접근하는 쓰레드에 의해 레퍼런스가 변경될 가능성이 있다.
